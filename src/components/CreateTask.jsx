@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTask() {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    status: 'Pending',
-    dueDate: '',
+    title: "",
+    description: "",
+    status: "Pending",
+    dueDate: "",
   });
   const navigate = useNavigate();
 
@@ -20,42 +20,38 @@ export default function CreateTask() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch('https://digital-login-backend.onrender.com/api/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://digital-login-backend.onrender.com/api/tasks",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await response.json();
       if (data.success) {
-        navigate('/tasks');
+        navigate("/tasks");
       }
     } catch (error) {
       console.error("Error creating task", error);
     }
   }
 
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input type="text" name="title" placeholder="Title" onChange={handleChange} required />
-//       <textarea name="description" placeholder="Description" onChange={handleChange}></textarea>
-//       <select name="status" onChange={handleChange}>
-//         <option value="Pending">Pending</option>
-//         <option value="In Progress">In Progress</option>
-//         <option value="Completed">Completed</option>
-//       </select>
-//       <input type="date" name="dueDate" onChange={handleChange} />
-//       <button type="submit">Create Task</button>
-//     </form>
-//   );
-
-
-return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg mt-8"
+    >
       <h2 className="text-2xl font-bold mb-6 text-center">Create a New Task</h2>
 
       <div className="mb-4">
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+        <label
+          htmlFor="title"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Title
+        </label>
         <input
           type="text"
           name="title"
@@ -69,7 +65,12 @@ return (
       </div>
 
       <div className="mb-4">
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+        <label
+          htmlFor="description"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Description
+        </label>
         <textarea
           name="description"
           id="description"
@@ -82,7 +83,12 @@ return (
       </div>
 
       <div className="mb-4">
-        <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+        <label
+          htmlFor="status"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Status
+        </label>
         <select
           name="status"
           id="status"
@@ -97,7 +103,12 @@ return (
       </div>
 
       <div className="mb-6">
-        <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+        <label
+          htmlFor="dueDate"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Due Date
+        </label>
         <input
           type="date"
           name="dueDate"

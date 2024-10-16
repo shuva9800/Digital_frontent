@@ -10,13 +10,13 @@ export default function Tasks() {
       try {
         const response = await fetch('https://digital-login-backend.onrender.com/api/tasks', {
           method: 'GET',
-          credentials: 'include', // to include cookies in the request
+          credentials: 'include', 
         });
         const data = await response.json();
         if (data.success) {
           setTasks(data.tasks);
         } else {
-          navigate('/login'); // redirect if not authenticated
+          navigate('/login'); 
         }
       } catch (error) {
         console.error("Error fetching tasks", error);
@@ -30,11 +30,11 @@ export default function Tasks() {
     try {
       const response = await fetch(`https://digital-login-backend.onrender.com/api/tasks/${taskId}`, {
         method: 'DELETE',
-        credentials: 'include', // to include cookies in the request
+        credentials: 'include', 
       });
       const data = await response.json();
       if (data.success) {
-        setTasks(tasks.filter(task => task._id !== taskId)); // Remove deleted task from state
+        setTasks(tasks.filter(task => task._id !== taskId)); 
       } else {
         console.error("Failed to delete task");
       }
