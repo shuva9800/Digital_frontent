@@ -8,7 +8,7 @@ export default function Tasks() {
   useEffect(() => {
     async function fetchTasks() {
       try {
-        const response = await fetch('http://localhost:4000/api/tasks', {
+        const response = await fetch('https://digital-login-backend.onrender.com/api/tasks', {
           method: 'GET',
           credentials: 'include', // to include cookies in the request
         });
@@ -28,7 +28,7 @@ export default function Tasks() {
   //delete task
   const handleDelete = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+      const response = await fetch(`https://digital-login-backend.onrender.com/api/tasks/${taskId}`, {
         method: 'DELETE',
         credentials: 'include', // to include cookies in the request
       });
@@ -43,24 +43,6 @@ export default function Tasks() {
     }
   };
 
-
-  // return (
-  //   <div>
-  //     <h1>Your Tasks</h1>
-  //     <ul>
-  //       {tasks.map(task => (
-  //         <li key={task._id}>
-  //           <h3>{task.title}</h3>
-  //           <p>{task.description}</p>
-  //           <p>Status: {task.status}</p>
-  //           <p>Due Date: {new Date(task.dueDate).toLocaleDateString()}</p>
-  //           <button onClick={() => handleDelete(task._id)}>Delete</button> {/* Delete button */}
-
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
