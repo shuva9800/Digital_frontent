@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -206,6 +205,12 @@ export default function Tasks() {
               >
                 Delete
               </button>
+            </div>
+            <div className="flex gap-2 mt-5">
+              <p>Go to create task page</p>
+              <Link to="/createtask">
+                <span className="text-blue-700">Create Task</span>
+              </Link>
             </div>
           </li>
         ))}
