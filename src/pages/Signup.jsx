@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  signInFalior,
+  signInStart,
+  signInSuccess,
+} from "../redux/user/userSlice";
 
 export default function Signup() {
   const [formData, setFormData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -17,7 +24,8 @@ export default function Signup() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    dispatch(signInStart());
+
     const response = await fetch(
       "https://digital-login-backend.onrender.com/api/register",
       {
@@ -29,12 +37,12 @@ export default function Signup() {
 
     const data = await response.json();
     if (data.success === false) {
-      setError(data.message);
-      setLoading(false);
+      dispatch(signInFalior(data.message));
+
       return;
     }
+    dispatch(signInSuccess(data.user));
 
-    setLoading(false);
     navigate("/login");
   };
 
